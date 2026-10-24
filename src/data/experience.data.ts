@@ -44,7 +44,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
       {
         anchor: 'Tier-0 E2E Test Automation:',
         description:
-          'Designed and executed robust end-to-end regression and UI verification automation suites utilizing Java and Selenium WebDriver, establishing enterprise-grade test automation standards for Tier 0 financial applications.',
+          'Designed automated end-to-end regression and UI verification suites utilizing Java and Selenium WebDriver, establishing enterprise-grade test automation standards for Tier 0 financial applications.',
       },
       {
         anchor: 'Customer-Centric Resolver Evolution:',
