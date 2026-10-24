@@ -14,17 +14,17 @@ export const PROJECTS_DATA: ProjectItem[] = [
   {
     id: 'fitcheck-ai',
     title: 'FitCheck — AI-Driven Apparel Fit Engine',
-    subtitle: 'Cross-Platform Mobile Client, Node.js/TypeScript Core API & Async Python Vision Microservice',
-    status: 'Active Architecture • Full-Stack & ML System',
-    category: 'Distributed AI & Mobile Platform',
+    subtitle: 'Cross-Platform Mobile Client, Node.js/TypeScript Core API & Async OCR/Vision Pipeline',
+    status: 'Active Architecture • Full-Stack & AI System',
+    category: 'Distributed Backend & Mobile Platform',
     repositoryUrl: 'https://github.com/hibrahi000/fitcheck',
     summary:
-      'Developing an advanced cross-platform clothing fit optimization system utilizing React Native (Expo), Node.js/TypeScript backend API, Prisma ORM, and PostgreSQL. Integrates an asynchronous Python/FastAPI microservice executing OCR (Tesseract) alongside the OpenAI Vision API for deep structural analysis of sizing metrics, anchored by a machine learning feedback loop providing highly personalized clothing size recommendations.',
+      'Developing an advanced cross-platform clothing fit optimization system utilizing React Native (Expo), a Node.js and TypeScript backend API, Prisma ORM, and PostgreSQL. Integrates an asynchronous OCR (Tesseract) and OpenAI Vision API ingestion pipeline for structural analysis of sizing metrics, anchored by a machine learning feedback loop providing personalized clothing size recommendations.',
     highlights: [
       {
         anchor: 'Hybrid OCR + Vision Ingestion:',
         detail:
-          'Asynchronous Python/FastAPI pipeline combining Tesseract OCR with OpenAI Vision API to extract structured garment measurements from unstructured care labels and sizing charts.',
+          'Asynchronous worker pipeline combining Tesseract OCR with the OpenAI Vision API to extract structured garment measurements from unstructured care labels and sizing charts.',
       },
       {
         anchor: 'Type-Safe Core Engine:',
@@ -32,19 +32,18 @@ export const PROJECTS_DATA: ProjectItem[] = [
           'Node.js & TypeScript backend powered by Prisma ORM and PostgreSQL, managing normalized brand geometry schemas, user biometric profiles, and low-latency fit scoring.',
       },
       {
-        anchor: 'Closed-Loop ML Personalization:',
+        anchor: 'Closed-Loop Fit Personalization:',
         detail:
           'Post-purchase drape and comfort feedback loop that continuously recalibrates ease allowances across Chest, Shoulder, and Torso dimensions.',
       },
     ],
     techStack: [
-      'React Native (Expo)',
       'Node.js',
       'TypeScript',
-      'Python',
-      'FastAPI',
+      'React Native (Expo)',
       'Prisma ORM',
       'PostgreSQL',
+      'REST APIs',
       'Tesseract OCR',
       'OpenAI Vision API',
     ],
@@ -113,10 +112,10 @@ export const FITCHECK_ARCHITECTURE_NODES: ArchitectureNode[] = [
     id: 'core-api',
     layer: 'Layer 02 • Core Gateway',
     title: 'Node.js / TypeScript Core API',
-    tech: 'Node.js • TypeScript • Prisma ORM',
+    tech: 'Node.js • TypeScript • Express • Prisma ORM',
     latencyMetric: '< 35ms p95',
     summary:
-      'Orchestrates authentication, user biometric profiles, asynchronous job dispatch to the Python AI service, and deterministic + ML fit scoring.',
+      'Orchestrates authentication, user biometric profiles, asynchronous job dispatch to the OCR/Vision worker pipeline, and deterministic fit scoring.',
     specs: [
       'Strict request/response schema validation and idempotent job orchestration',
       'Computes weighted dimensional ease vectors across Chest, Shoulder, and Length',
@@ -125,12 +124,12 @@ export const FITCHECK_ARCHITECTURE_NODES: ArchitectureNode[] = [
   },
   {
     id: 'vision-service',
-    layer: 'Layer 03 • AI Microservice',
-    title: 'Python / FastAPI OCR + Vision Engine',
-    tech: 'Python • FastAPI • Tesseract OCR • OpenAI Vision',
+    layer: 'Layer 03 • Async Vision Worker',
+    title: 'OCR + OpenAI Vision Ingestion Pipeline',
+    tech: 'Tesseract OCR • OpenAI Vision API • Async Workers',
     latencyMetric: 'Async Worker',
     summary:
-      'Executes dual-stage optical character recognition and multimodal LLM structural parsing to convert messy size charts into normalized JSON.',
+      'Executes dual-stage optical character recognition and multimodal LLM structural parsing to convert unstructured size charts into normalized JSON.',
     specs: [
       'Stage 1: Tesseract OCR extracts raw tabular tokens & fabric composition strings',
       'Stage 2: OpenAI Vision API resolves unit ambiguity (cm/in) and garment cut geometry',

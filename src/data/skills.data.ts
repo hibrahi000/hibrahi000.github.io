@@ -86,6 +86,7 @@ export const SKILLS_DATA: SkillItem[] = [
     categoryLabel: 'Languages & Frameworks',
     level: 'Core',
     context: 'Optimized routing & middleware pipelines (-70% latency reduction at BAE Systems)',
+    isPrimarySpotlight: true,
   },
   {
     name: 'Hapi.js',
@@ -93,21 +94,6 @@ export const SKILLS_DATA: SkillItem[] = [
     categoryLabel: 'Languages & Frameworks',
     level: 'Production',
     context: 'Enterprise API server architecture & modular plugin systems',
-  },
-  {
-    name: 'Python',
-    category: 'languages-frameworks',
-    categoryLabel: 'Languages & Frameworks',
-    level: 'Core',
-    context: 'IoT analytics backends (StrongArm) & AI OCR/Vision microservices (FitCheck)',
-    isPrimarySpotlight: true,
-  },
-  {
-    name: 'FastAPI',
-    category: 'languages-frameworks',
-    categoryLabel: 'Languages & Frameworks',
-    level: 'Production',
-    context: 'Asynchronous Python microservices for Tesseract OCR & OpenAI Vision pipelines',
   },
   {
     name: 'JavaScript (ES6+)',
@@ -130,6 +116,13 @@ export const SKILLS_DATA: SkillItem[] = [
     categoryLabel: 'Languages & Frameworks',
     level: 'Production',
     context: 'Predictable state management for complex multi-step enterprise workflows',
+  },
+  {
+    name: 'Python',
+    category: 'languages-frameworks',
+    categoryLabel: 'Languages & Frameworks',
+    level: 'Production',
+    context: 'IoT worker safety analytics backend (StrongArm Technologies)',
   },
 
   // Backend & Architecture

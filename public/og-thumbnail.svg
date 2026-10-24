@@ -97,8 +97,8 @@
       <rect x="0" y="0" width="236" height="46" rx="23" fill="url(#bluePill)"/>
       <text x="118" y="29" text-anchor="middle" fill="#FFFFFF" font-family="'SF Mono', 'JetBrains Mono', monospace" font-size="15" font-weight="700">hibrahi000.github.io</text>
 
-      <text x="258" y="29" fill="#86868B" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="500">
-        PostgreSQL  •  Python / FastAPI  •  React
+      <text x="256" y="29" fill="#86868B" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="15" font-weight="500">
+        PostgreSQL  •  Express.js  •  Microservices  •  React
       </text>
     </g>
   </g>

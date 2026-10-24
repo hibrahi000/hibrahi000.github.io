@@ -140,7 +140,7 @@ export const ProjectsSection: React.FC = () => {
         <SectionHeader
           eyebrow="03 • Featured Systems & Product Engineering"
           title="Interactive Architecture Showcase"
-          subtitle="Modular project showcase demonstrating full-stack product engineering, asynchronous Python OCR/Vision microservices, and type-safe Node.js/TypeScript backend design."
+          subtitle="Modular project showcase demonstrating full-stack product engineering, asynchronous OCR/Vision ingestion pipelines, and type-safe Node.js/TypeScript backend design."
         />
 
         {PROJECTS_DATA.map((project) => (
