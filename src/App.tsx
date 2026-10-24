@@ -12,15 +12,17 @@ import { Toast } from './components/ui/Toast';
 
 export type ThemeMode = 'dark' | 'light';
 
+const THEME_STORAGE_KEY = 'portfolio-theme-v2';
+
 export const App: React.FC = () => {
   const [theme, setTheme] = useState<ThemeMode>(() => {
     if (typeof window !== 'undefined') {
-      const saved = window.localStorage.getItem('portfolio-theme');
+      const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
       if (saved === 'light' || saved === 'dark') {
         return saved;
       }
     }
-    return 'dark';
+    return 'light';
   });
 
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -35,7 +37,7 @@ export const App: React.FC = () => {
       root.classList.remove('light-theme');
       root.classList.add('dark');
     }
-    window.localStorage.setItem('portfolio-theme', theme);
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
   }, [theme]);
 
   const handleToggleTheme = useCallback(() => {

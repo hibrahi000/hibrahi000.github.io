@@ -50,29 +50,68 @@
 }
 
 @layer components {
+  /* Bento Card Base (Dark Mode) */
   .apple-bento {
     background: linear-gradient(
       180deg,
-      rgba(25, 28, 36, 0.72) 0%,
-      rgba(14, 16, 21, 0.85) 100%
+      rgba(25, 28, 36, 0.75) 0%,
+      rgba(14, 16, 21, 0.88) 100%
     );
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55),
       inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-  }
-
-  .apple-bento-interactive {
-    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 0.28s ease,
-      box-shadow 0.28s ease;
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.28s ease;
   }
 
   .apple-bento-interactive:hover {
-    border-color: rgba(41, 151, 255, 0.35);
-    box-shadow: 0 24px 60px rgba(0, 113, 227, 0.14),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
+    transform: translateY(-3px);
+    border-color: rgba(41, 151, 255, 0.45);
+    box-shadow: 0 28px 64px rgba(0, 113, 227, 0.18),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
+  }
+
+  /* Primary System Blue Button Micro-Interactions */
+  .apple-primary-btn {
+    transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.2s ease,
+      box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .apple-primary-btn:hover {
+    transform: translateY(-1.5px);
+    background-color: #0077ed !important;
+    box-shadow: 0 12px 30px rgba(0, 113, 227, 0.42) !important;
+  }
+
+  /* Secondary Glass Button Micro-Interactions */
+  .apple-glass-btn {
+    transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .apple-glass-btn:hover {
+    transform: translateY(-1.5px);
+    border-color: rgba(41, 151, 255, 0.45) !important;
+    box-shadow: 0 10px 26px rgba(0, 113, 227, 0.16) !important;
+  }
+
+  /* PDF Action Button in Navbar */
+  .apple-pdf-btn {
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.2s ease,
+      box-shadow 0.22s ease !important;
+  }
+
+  .apple-pdf-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0, 113, 227, 0.22) !important;
   }
 
   .bg-apple-grid {
@@ -101,12 +140,42 @@
     border: 3px solid #0071e3;
     cursor: pointer;
     box-shadow: 0 2px 10px rgba(0, 113, 227, 0.5);
-    transition: transform 0.15s ease, background-color 0.15s ease;
+    transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.18s ease;
   }
 
   input[type="range"].apple-slider::-webkit-slider-thumb:hover {
-    transform: scale(1.12);
+    transform: scale(1.16);
+    box-shadow: 0 4px 14px rgba(0, 113, 227, 0.65);
   }
+}
+
+/* ==========================================================================
+   Universal Interactive Hover Refinements (Dark & Light Mode)
+   ========================================================================== */
+button,
+a {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dark mode interactive surface hover polish */
+html.dark .hover\:bg-white\/\[0\.09\]:hover,
+html.dark .hover\:bg-white\/\[0\.1\]:hover {
+  transform: translateY(-1.5px);
+  background-color: rgba(41, 151, 255, 0.12) !important;
+  border-color: rgba(41, 151, 255, 0.4) !important;
+  box-shadow: 0 8px 22px rgba(0, 113, 227, 0.18);
+}
+
+html.dark .hover\:bg-white\/\[0\.06\]:hover {
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.065) !important;
+  border-color: rgba(41, 151, 255, 0.38) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
 }
 
 /* ==========================================================================
@@ -124,8 +193,8 @@ html.light-theme .bg-apple-obsidian {
 
 html.light-theme .bg-apple-grid {
   background-image:
-    linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px) !important;
+    linear-gradient(to right, rgba(0, 0, 0, 0.032) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.032) 1px, transparent 1px) !important;
 }
 
 html.light-theme .apple-navbar {
@@ -140,16 +209,18 @@ html.light-theme .apple-mobile-drawer {
 }
 
 html.light-theme .apple-bento {
-  background: rgba(255, 255, 255, 0.92) !important;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
-  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.05),
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(0, 0, 0, 0.075) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.045),
     0 2px 6px rgba(0, 0, 0, 0.02),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.9) !important;
+    inset 0 1px 0 0 rgba(255, 255, 255, 1) !important;
 }
 
 html.light-theme .apple-bento-interactive:hover {
-  border-color: rgba(0, 113, 227, 0.4) !important;
-  box-shadow: 0 18px 44px rgba(0, 113, 227, 0.1),
+  transform: translateY(-3px);
+  background: #ffffff !important;
+  border-color: rgba(0, 113, 227, 0.42) !important;
+  box-shadow: 0 20px 44px rgba(0, 113, 227, 0.11),
     0 4px 12px rgba(0, 0, 0, 0.04) !important;
 }
 
@@ -158,11 +229,12 @@ html.light-theme .text-white {
   color: #1d1d1f !important;
 }
 
-/* Preserve white text on solid System Blue buttons & active nav pills */
+/* Preserve white text on solid System Blue buttons, active tabs & active nav pills */
 html.light-theme .apple-primary-btn,
 html.light-theme .apple-primary-btn *,
 html.light-theme .apple-nav-active,
-html.light-theme .bg-apple-blue {
+html.light-theme .bg-apple-blue,
+html.light-theme .bg-apple-blue * {
   color: #ffffff !important;
 }
 
@@ -171,20 +243,33 @@ html.light-theme .apple-pdf-btn {
   color: #ffffff !important;
 }
 
+html.light-theme .apple-pdf-btn:hover {
+  background-color: #0071e3 !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 20px rgba(0, 113, 227, 0.3) !important;
+}
+
 html.light-theme .apple-pdf-btn svg {
-  color: #2997ff !important;
+  color: #38bdf8 !important;
+}
+
+html.light-theme .apple-pdf-btn:hover svg {
+  color: #ffffff !important;
 }
 
 html.light-theme .apple-glass-btn {
-  background-color: rgba(255, 255, 255, 0.85) !important;
+  background-color: #ffffff !important;
   border-color: rgba(0, 0, 0, 0.12) !important;
   color: #1d1d1f !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04) !important;
 }
 
 html.light-theme .apple-glass-btn:hover {
-  background-color: #ffffff !important;
-  border-color: rgba(0, 113, 227, 0.35) !important;
+  transform: translateY(-1.5px);
+  background-color: #f2f8ff !important;
+  border-color: rgba(0, 113, 227, 0.45) !important;
+  color: #0066cc !important;
+  box-shadow: 0 10px 24px rgba(0, 113, 227, 0.12) !important;
 }
 
 html.light-theme .apple-hero-gradient {
@@ -234,8 +319,38 @@ html.light-theme .bg-black\/50 {
   background-color: #f5f5f7 !important;
 }
 
+/* Crisp Apple Light Mode Hover States for Pills, Tabs, Cards & Social Buttons */
+html.light-theme .hover\:bg-white\/\[0\.04\]:hover,
+html.light-theme .hover\:bg-white\/\[0\.05\]:hover {
+  background-color: rgba(0, 113, 227, 0.08) !important;
+  color: #0066cc !important;
+}
+
+html.light-theme .hover\:bg-white\/\[0\.06\]:hover {
+  transform: translateY(-2px);
+  background-color: #ffffff !important;
+  border-color: rgba(0, 113, 227, 0.42) !important;
+  box-shadow: 0 12px 28px rgba(0, 113, 227, 0.1) !important;
+}
+
+html.light-theme .hover\:bg-white\/\[0\.09\]:hover,
+html.light-theme .hover\:bg-white\/\[0\.1\]:hover {
+  transform: translateY(-1.5px);
+  background-color: #ffffff !important;
+  border-color: rgba(0, 113, 227, 0.45) !important;
+  color: #0066cc !important;
+  box-shadow: 0 8px 20px rgba(0, 113, 227, 0.12) !important;
+}
+
+html.light-theme .hover\:bg-apple-blue\/10:hover {
+  transform: translateY(-2px);
+  background-color: #f0f7ff !important;
+  border-color: rgba(0, 113, 227, 0.45) !important;
+  box-shadow: 0 10px 24px rgba(0, 113, 227, 0.1) !important;
+}
+
 html.light-theme .from-apple-blue\/15 {
-  background: linear-gradient(135deg, rgba(0, 113, 227, 0.08) 0%, #f5f5f7 100%) !important;
+  background: linear-gradient(135deg, rgba(0, 113, 227, 0.07) 0%, #f5f5f7 100%) !important;
 }
 
 /* Crisp hairline borders in Light Mode */
@@ -249,6 +364,12 @@ html.light-theme .border-white\/\[0\.1\],
 html.light-theme .border-white\/\[0\.12\],
 html.light-theme .border-white\/\[0\.15\] {
   border-color: rgba(0, 0, 0, 0.085) !important;
+}
+
+html.light-theme .hover\:border-white\/\[0\.16\]:hover {
+  border-color: rgba(0, 113, 227, 0.38) !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 8px 20px rgba(0, 113, 227, 0.08) !important;
 }
 
 html.light-theme input[type="range"].apple-slider {
