@@ -1,0 +1,46 @@
+{
+  "name": "hashmat-ibrahimi-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Modular component-driven portfolio architecture for Hashmat Ibrahimi, Software Engineer.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "portfolio",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "vite",
+    "software-engineer",
+    "distributed-systems",
+    "graphql",
+    "spring-boot",
+    "design-system"
+  ],
+  "author": "Hashmat Ibrahimi <Hashmat.ibrahimi.21@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lucide-react": "^0.454.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-darwin-arm64": "^4.64.12"
+  }
+}
