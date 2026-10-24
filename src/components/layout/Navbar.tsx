@@ -1,13 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { FileDown, Github, Linkedin, Menu, Terminal, X } from 'lucide-react';
+import {
+  FileDown,
+  Github,
+  Linkedin,
+  Menu,
+  Moon,
+  Sun,
+  Terminal,
+  X,
+} from 'lucide-react';
 import { NAVIGATION_ITEMS, PROFILE_DATA } from '../../data/profile.data';
 import { SectionId } from '../../types/portfolio.types';
+import { ThemeMode } from '../../App';
 
 interface NavbarProps {
+  theme: ThemeMode;
+  onToggleTheme: () => void;
   onPrintResume: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  theme,
+  onToggleTheme,
+  onPrintResume,
+}) => {
   const [activeSection, setActiveSection] = useState<SectionId>('about');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -17,7 +33,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
       const scrollY = window.scrollY;
       setScrolled(scrollY > 16);
 
-      // If scrolled to the very bottom of the page, activate the last nav item (Contact)
       const isAtBottom =
         window.innerHeight + scrollY >=
         document.documentElement.scrollHeight - 48;
@@ -26,7 +41,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
         return;
       }
 
-      // Trigger line sits 160px below the top of the viewport (just below the sticky navbar)
       const triggerOffset = 160;
       let currentSection: SectionId = NAVIGATION_ITEMS[0].id;
 
@@ -68,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
 
   return (
     <header
-      className={`sticky top-0 z-40 transition-all duration-300 no-print ${
+      className={`apple-navbar sticky top-0 z-40 transition-all duration-300 no-print ${
         scrolled
           ? 'bg-apple-black/80 backdrop-blur-2xl border-b border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.65)]'
           : 'bg-apple-black/50 backdrop-blur-xl border-b border-white/[0.04]'
@@ -114,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
                 onClick={() => handleNavClick(item.id)}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
                   isActive
-                    ? 'bg-apple-blue text-white shadow-[0_2px_12px_rgba(0,113,227,0.45)]'
+                    ? 'apple-nav-active bg-apple-blue text-white shadow-[0_2px_12px_rgba(0,113,227,0.45)]'
                     : 'text-apple-gray-300 hover:text-white hover:bg-white/[0.05]'
                 }`}
               >
@@ -124,8 +138,32 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
           })}
         </nav>
 
-        {/* Right Actions: GitHub, LinkedIn, PDF Resume */}
-        <div className="hidden sm:flex items-center gap-2.5">
+        {/* Right Actions: Theme Toggle, GitHub, LinkedIn, PDF Resume */}
+        <div className="hidden sm:flex items-center gap-2">
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            aria-label={
+              theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'
+            }
+            title={
+              theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'
+            }
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] text-xs font-medium text-apple-gray-300 hover:text-white transition-colors"
+          >
+            {theme === 'dark' ? (
+              <>
+                <Sun className="w-3.5 h-3.5 text-apple-amber" />
+                <span className="hidden lg:inline">Light</span>
+              </>
+            ) : (
+              <>
+                <Moon className="w-3.5 h-3.5 text-apple-blue" />
+                <span className="hidden lg:inline">Dark</span>
+              </>
+            )}
+          </button>
+
           <a
             href={PROFILE_DATA.contact.githubUrl}
             target="_blank"
@@ -147,7 +185,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
           <button
             type="button"
             onClick={onPrintResume}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-black hover:bg-apple-gray-200 transition-all shadow-sm"
+            className="apple-pdf-btn inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-black hover:bg-apple-gray-200 transition-all shadow-sm"
           >
             <FileDown className="w-3.5 h-3.5 text-apple-blue" />
             <span>Resume PDF</span>
@@ -158,8 +196,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
         <div className="flex items-center gap-2 md:hidden">
           <button
             type="button"
+            onClick={onToggleTheme}
+            aria-label="Toggle Theme"
+            className="p-2 rounded-full bg-white/[0.05] border border-white/[0.1] text-white"
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4 text-apple-amber" />
+            ) : (
+              <Moon className="w-4 h-4 text-apple-blue" />
+            )}
+          </button>
+          <button
+            type="button"
             onClick={onPrintResume}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white text-black"
+            className="apple-pdf-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white text-black"
           >
             <FileDown className="w-3.5 h-3.5 text-apple-blue" />
             <span>PDF</span>
@@ -177,7 +227,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
 
       {/* Mobile Dropdown Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-apple-carbon/95 backdrop-blur-2xl border-b border-white/[0.08] px-4 pt-2 pb-5 space-y-1.5">
+        <div className="apple-mobile-drawer md:hidden bg-apple-carbon/95 backdrop-blur-2xl border-b border-white/[0.08] px-4 pt-2 pb-5 space-y-1.5">
           {NAVIGATION_ITEMS.map((item) => {
             const isActive = activeSection === item.id;
             return (

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Footer } from './components/layout/Footer';
 import { Navbar } from './components/layout/Navbar';
 import { PrintResume } from './components/layout/PrintResume';
@@ -10,9 +10,37 @@ import { ProjectsSection } from './components/sections/ProjectsSection';
 import { SkillsSection } from './components/sections/SkillsSection';
 import { Toast } from './components/ui/Toast';
 
+export type ThemeMode = 'dark' | 'light';
+
 export const App: React.FC = () => {
+  const [theme, setTheme] = useState<ThemeMode>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = window.localStorage.getItem('portfolio-theme');
+      if (saved === 'light' || saved === 'dark') {
+        return saved;
+      }
+    }
+    return 'dark';
+  });
+
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [copiedLabel, setCopiedLabel] = useState<string | null>(null);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'light') {
+      root.classList.remove('dark');
+      root.classList.add('light-theme');
+    } else {
+      root.classList.remove('light-theme');
+      root.classList.add('dark');
+    }
+    window.localStorage.setItem('portfolio-theme', theme);
+  }, [theme]);
+
+  const handleToggleTheme = useCallback(() => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  }, []);
 
   const handleCopy = useCallback(async (text: string, label: string) => {
     try {
@@ -40,8 +68,12 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-apple-black bg-apple-grid text-apple-gray-100 flex flex-col">
-      <Navbar onPrintResume={handlePrintResume} />
+    <div className="min-h-screen bg-apple-black bg-apple-grid text-apple-gray-100 flex flex-col transition-colors duration-300">
+      <Navbar
+        theme={theme}
+        onToggleTheme={handleToggleTheme}
+        onPrintResume={handlePrintResume}
+      />
 
       <main className="flex-1 no-print">
         <HeroSection

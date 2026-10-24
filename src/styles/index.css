@@ -12,6 +12,11 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  html.light-theme {
+    background-color: #f5f5f7;
+    color: #1d1d1f;
+  }
+
   section[id] {
     scroll-margin-top: 4rem;
   }
@@ -30,6 +35,17 @@
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #2997ff;
+  }
+
+  html.light-theme ::-webkit-scrollbar-track {
+    background: #f5f5f7;
+  }
+  html.light-theme ::-webkit-scrollbar-thumb {
+    background: #c7c7cc;
+    border: 2px solid #f5f5f7;
+  }
+  html.light-theme ::-webkit-scrollbar-thumb:hover {
+    background: #0071e3;
   }
 }
 
@@ -91,6 +107,156 @@
   input[type="range"].apple-slider::-webkit-slider-thumb:hover {
     transform: scale(1.12);
   }
+}
+
+/* ==========================================================================
+   Apple Light Mode Theme System (#f5f5f7 Alabaster Canvas & Frosted White Bento)
+   ========================================================================== */
+html.light-theme body,
+html.light-theme .bg-apple-black {
+  background-color: #f5f5f7 !important;
+  color: #1d1d1f !important;
+}
+
+html.light-theme .bg-apple-obsidian {
+  background-color: #ebebf0 !important;
+}
+
+html.light-theme .bg-apple-grid {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px) !important;
+}
+
+html.light-theme .apple-navbar {
+  background-color: rgba(255, 255, 255, 0.82) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light-theme .apple-mobile-drawer {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light-theme .apple-bento {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.05),
+    0 2px 6px rgba(0, 0, 0, 0.02),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+html.light-theme .apple-bento-interactive:hover {
+  border-color: rgba(0, 113, 227, 0.4) !important;
+  box-shadow: 0 18px 44px rgba(0, 113, 227, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Typography ramp in Light Mode */
+html.light-theme .text-white {
+  color: #1d1d1f !important;
+}
+
+/* Preserve white text on solid System Blue buttons & active nav pills */
+html.light-theme .apple-primary-btn,
+html.light-theme .apple-primary-btn *,
+html.light-theme .apple-nav-active,
+html.light-theme .bg-apple-blue {
+  color: #ffffff !important;
+}
+
+html.light-theme .apple-pdf-btn {
+  background-color: #1d1d1f !important;
+  color: #ffffff !important;
+}
+
+html.light-theme .apple-pdf-btn svg {
+  color: #2997ff !important;
+}
+
+html.light-theme .apple-glass-btn {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  color: #1d1d1f !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light-theme .apple-glass-btn:hover {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 113, 227, 0.35) !important;
+}
+
+html.light-theme .apple-hero-gradient {
+  background-image: linear-gradient(90deg, #003d7a 0%, #0071e3 55%, #0284c7 100%) !important;
+}
+
+html.light-theme .text-apple-gray-100,
+html.light-theme .text-apple-gray-200 {
+  color: #2c2c2e !important;
+}
+
+html.light-theme .text-apple-gray-300 {
+  color: #424245 !important;
+}
+
+html.light-theme .text-apple-gray-400 {
+  color: #6e6e73 !important;
+}
+
+/* High-contrast Apple Light Mode accent hues */
+html.light-theme .text-apple-azure {
+  color: #0066cc !important;
+}
+
+html.light-theme .text-apple-emerald {
+  color: #047857 !important;
+}
+
+html.light-theme .text-apple-cyan {
+  color: #0369a1 !important;
+}
+
+html.light-theme .text-apple-amber {
+  color: #b45309 !important;
+}
+
+/* Nested surfaces & pill backgrounds in Light Mode */
+html.light-theme .bg-white\/\[0\.01\],
+html.light-theme .bg-white\/\[0\.02\],
+html.light-theme .bg-white\/\[0\.03\],
+html.light-theme .bg-white\/\[0\.04\],
+html.light-theme .bg-white\/\[0\.05\],
+html.light-theme .bg-white\/\[0\.06\],
+html.light-theme .bg-white\/\[0\.08\],
+html.light-theme .bg-black\/40,
+html.light-theme .bg-black\/50 {
+  background-color: #f5f5f7 !important;
+}
+
+html.light-theme .from-apple-blue\/15 {
+  background: linear-gradient(135deg, rgba(0, 113, 227, 0.08) 0%, #f5f5f7 100%) !important;
+}
+
+/* Crisp hairline borders in Light Mode */
+html.light-theme .border-white\/\[0\.04\],
+html.light-theme .border-white\/\[0\.05\],
+html.light-theme .border-white\/\[0\.06\],
+html.light-theme .border-white\/\[0\.07\],
+html.light-theme .border-white\/\[0\.08\],
+html.light-theme .border-white\/\[0\.09\],
+html.light-theme .border-white\/\[0\.1\],
+html.light-theme .border-white\/\[0\.12\],
+html.light-theme .border-white\/\[0\.15\] {
+  border-color: rgba(0, 0, 0, 0.085) !important;
+}
+
+html.light-theme input[type="range"].apple-slider {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+html.light-theme .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.08) !important;
 }
 
 @media print {

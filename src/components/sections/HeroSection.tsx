@@ -59,7 +59,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </p>
               <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold tracking-tight text-white leading-[1.06]">
                 {PROFILE_DATA.valueProposition.titlePrefix}{' '}
-                <span className="bg-gradient-to-r from-white via-apple-azure to-apple-cyan bg-clip-text text-transparent">
+                <span className="apple-hero-gradient bg-gradient-to-r from-white via-apple-azure to-apple-cyan bg-clip-text text-transparent">
                   {PROFILE_DATA.valueProposition.titleHighlight}
                 </span>{' '}
                 {PROFILE_DATA.valueProposition.titleSuffix}

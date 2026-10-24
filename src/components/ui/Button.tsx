@@ -22,9 +22,9 @@ export const Button: React.FC<ButtonProps> = ({
 
   const variantStyles = {
     primary:
-      'bg-apple-blue hover:bg-[#0077ed] text-white shadow-[0_8px_24px_rgba(0,113,227,0.38)] hover:shadow-[0_12px_32px_rgba(41,151,255,0.5)] border border-white/15',
+      'apple-primary-btn bg-apple-blue hover:bg-[#0077ed] text-white shadow-[0_8px_24px_rgba(0,113,227,0.38)] hover:shadow-[0_12px_32px_rgba(41,151,255,0.5)] border border-white/15',
     glass:
-      'bg-white/[0.06] hover:bg-white/[0.11] text-white border border-white/[0.12] hover:border-white/[0.24] backdrop-blur-xl',
+      'apple-glass-btn bg-white/[0.06] hover:bg-white/[0.11] text-white border border-white/[0.12] hover:border-white/[0.24] backdrop-blur-xl',
     subtle:
       'bg-transparent hover:bg-white/[0.06] text-apple-gray-300 hover:text-white',
   };
