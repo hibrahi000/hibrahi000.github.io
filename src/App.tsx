@@ -66,7 +66,7 @@ export const App: React.FC = () => {
   }, []);
 
   const handlePrintResume = useCallback(() => {
-    window.print();
+    window.open('./Hashmat_Ibrahimi_Resume.pdf', '_blank', 'noopener,noreferrer');
   }, []);
 
   return (
