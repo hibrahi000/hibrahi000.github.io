@@ -13,37 +13,52 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 16);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const updateActiveSectionOnScroll = () => {
+      const scrollY = window.scrollY;
+      setScrolled(scrollY > 16);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id as SectionId);
-          }
-        });
-      },
-      {
-        rootMargin: '-25% 0px -60% 0px',
-        threshold: 0.05,
+      // If scrolled to the very bottom of the page, activate the last nav item (Contact)
+      const isAtBottom =
+        window.innerHeight + scrollY >=
+        document.documentElement.scrollHeight - 48;
+      if (isAtBottom) {
+        setActiveSection(NAVIGATION_ITEMS[NAVIGATION_ITEMS.length - 1].id);
+        return;
       }
-    );
 
-    NAVIGATION_ITEMS.forEach((item) => {
-      const el = document.getElementById(item.id);
-      if (el) observer.observe(el);
+      // Trigger line sits 160px below the top of the viewport (just below the sticky navbar)
+      const triggerOffset = 160;
+      let currentSection: SectionId = NAVIGATION_ITEMS[0].id;
+
+      for (const item of NAVIGATION_ITEMS) {
+        const el = document.getElementById(item.id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= triggerOffset) {
+            currentSection = item.id;
+          }
+        }
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    updateActiveSectionOnScroll();
+    window.addEventListener('scroll', updateActiveSectionOnScroll, {
+      passive: true,
+    });
+    window.addEventListener('resize', updateActiveSectionOnScroll, {
+      passive: true,
     });
 
-    return () => observer.disconnect();
+    return () => {
+      window.removeEventListener('scroll', updateActiveSectionOnScroll);
+      window.removeEventListener('resize', updateActiveSectionOnScroll);
+    };
   }, []);
 
   const handleNavClick = (id: SectionId) => {
+    setActiveSection(id);
     setMobileMenuOpen(false);
     const el = document.getElementById(id);
     if (el) {
@@ -95,6 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
             return (
               <button
                 key={item.id}
+                type="button"
                 onClick={() => handleNavClick(item.id)}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
                   isActive
@@ -108,7 +124,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
           })}
         </nav>
 
-        {/* Right Actions: GitHub, LinkedIn, 1-Click PDF Resume */}
+        {/* Right Actions: GitHub, LinkedIn, PDF Resume */}
         <div className="hidden sm:flex items-center gap-2.5">
           <a
             href={PROFILE_DATA.contact.githubUrl}
@@ -129,6 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
             <Linkedin className="w-4 h-4" />
           </a>
           <button
+            type="button"
             onClick={onPrintResume}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-black hover:bg-apple-gray-200 transition-all shadow-sm"
           >
@@ -140,6 +157,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
         {/* Mobile Menu Trigger */}
         <div className="flex items-center gap-2 md:hidden">
           <button
+            type="button"
             onClick={onPrintResume}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white text-black"
           >
@@ -147,6 +165,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
             <span>PDF</span>
           </button>
           <button
+            type="button"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-label="Toggle Menu"
             className="p-2 rounded-xl bg-white/[0.05] border border-white/[0.1] text-white"
@@ -164,6 +183,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onPrintResume }) => {
             return (
               <button
                 key={item.id}
+                type="button"
                 onClick={() => handleNavClick(item.id)}
                 className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                   isActive
